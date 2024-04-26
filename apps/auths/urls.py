@@ -1,13 +1,15 @@
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from .views import (
+    SignUpView,
+    LoginView
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('main.urls')),
-    path('sign_up/',include('auths.urls'))
+    path('registration/', SignUpView.as_view(),name='signup_view'),
+    path('login/',LoginView.as_view(),name='login_view')
 ]
 
 if settings.DEBUG:

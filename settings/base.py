@@ -1,23 +1,13 @@
 from pathlib import Path
-
 import os
 import sys
-
 from decouple import config
-
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(BASE_DIR)
 sys.path.append(os.path.join(BASE_DIR,'apps'))
-
-
-
 SECRET_KEY = config('SECRET_KEY',str)
-
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,13 +16,11 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 PROJECT_APPS =[
-    'main.apps.MainConfig'
+    'main.apps.MainConfig',
+    'auths.apps.AuthsConfig'
 ]
-
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -42,9 +30,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'settings.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -60,18 +46,13 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'settings.wsgi.application'
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -86,18 +67,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 LANGUAGE_CODE = 'ru-RU'
-
 TIME_ZONE = 'Asia/Almaty'
-
 USE_I18N = True
-
 USE_TZ = True
-
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_URL = 'static/'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'auths.CustomUser'
